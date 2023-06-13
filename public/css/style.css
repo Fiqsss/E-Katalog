@@ -1,0 +1,60 @@
+#sidebar {
+    transition: margin-left 0.3s ease;
+}
+
+#sidebar .container {
+    background-color: white;
+    display: flex;
+    width: 230px;
+    position: absolute;
+    margin: 50px 10px;
+    z-index: 30000;
+    height: 90vh;
+}
+
+.button-close {
+    float: left;
+    position: absolute;
+    background-color: white;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    margin-left: 93%;
+    margin-top: 50%;
+}
+
+.sidebar {
+    width: 300px;
+    padding: 24px;
+    box-sizing: border-box;
+}
+.card {
+    overflow: hidden;
+}
+.card .gam-det {
+    transform: scale(1);
+    transition: all 0.3s ease-out;
+}
+.card:hover .gam-det {
+    transform: scale(1.1);
+    transition: all 0.3s ease-in;
+}
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -240px;
+        margin-top: 40px;
+    }
+
+    .modal-backdrop {
+        display: flex;
+        justify-content: center;
+    }
+    .head {
+        margin-top: -40px;
+    }
+}
+
+.modal-backdrop {
+    display: flex;
+    justify-content: center !important;
+}
