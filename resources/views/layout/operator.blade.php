@@ -48,13 +48,16 @@
              </a>
            </li>
            <li class="nav-item mb-3">
-             <a class="nav-link d-flex" href="operator/logout">
-               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fa-solid fa-right-from-bracket fa-xl {{ ($title === "Logout") ? 'fa-bounce' : '' }}"></i>
-               </div>
-               <span class="nav-link-text ms-1" style="color: #213555">Log Out</span>
-             </a>
-           </li>
+            <a class="nav-link d-flex" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-right-from-bracket fa-xl {{ ($title === "Logout") ? 'fa-bounce' : '' }}"></i>
+                </div>
+                <span class="nav-link-text ms-1" style="color: #213555">Log Out</span>
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+        </li>
          </ul>
          </div>
         </div>

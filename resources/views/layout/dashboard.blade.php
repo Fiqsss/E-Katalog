@@ -17,10 +17,7 @@
 
 </head>
 <body>
-    <div class="head position-absolute w-100" style="background-color: {{ ($title === 'Home') ? '#F21472' : (($title === 'Tambah') ? '#448EF6' : (($title === 'User') ? '#F2A154' : '')) }}; min-height: 300px;"></div>
-
-
-
+    <div class="head position-absolute w-100" style="background-color: {{ ($title === 'Home') ? '#F21472' : (($title === 'Tambah') ? '#448EF6' : (($title === 'User') ? '#F2A154' : (($title === 'transaksi') ? '#22A699' : ''))) }}; min-height: 300px;"></div>
     <section id="sidebar">
         <div class="container shadow rounded ">
          <div class="button-close rounded">
@@ -59,6 +56,14 @@
              </a>
            </li>
            <li class="nav-item mb-3">
+            <a class="nav-link d-flex" href="/admin/transaksi">
+              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+               <i class="fa-solid fa-repeat fa-xl {{ ($title === "Transaksi") ? 'fa-bounce' : '' }}" style="color: #213555"></i>
+              </div>
+              <span class="nav-link-text ms-1">Transaksi</span>
+            </a>
+          </li>
+           <li class="nav-item mb-3">
             <a class="nav-link d-flex" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="fa-solid fa-right-from-bracket fa-xl {{ ($title === "Logout") ? 'fa-bounce' : '' }}"></i>
@@ -75,7 +80,7 @@
         </div>
     </section>
 
-    <div class="container">
+    <div class="container" style="position: relative">
         @yield('container')
     </div>
 

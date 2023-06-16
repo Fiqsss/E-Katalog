@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Produk;
-use App\Http\Requests\StoreProdukRequest;
-use App\Http\Requests\UpdateProdukRequest;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Http\Requests\StoreProdukRequest;
+use App\Http\Requests\UpdateProdukRequest;
 
 class ProdukController extends Controller
 {
@@ -15,6 +16,11 @@ class ProdukController extends Controller
     // {
     //     $this->middleware('auth');
     // }
+    public function transaksi()
+    {
+        $transaksi = Transaksi::with('produk')->get();
+        return view('admin.transaksi',['transaksi' => $transaksi , "title" => "transaksi"]);
+    }
 
     // HOME
     public function operatorhome()

@@ -19,14 +19,12 @@
                 <a data-bs-toggle="modal" data-bs-target="#gam{{ $item['id'] }}">
                     <img class="w-100 rounded gam-det" style=" height:15rem; object-fit:cover;" src="{{ asset('produk/'.$item['gambar']) }}">
                 </a>
-                <div class="card-body pb-1">
+                <div class="card-body ">
                     <h4 class="card-title text-bold">{{ $item['namabarang'] }}</h4>
                     <p class="badge bg-warning ">{{ $item['matcode'] }}</p><br>
-                    <p class="badge badge-sm text-black-50">Qty :{{ $item['qty'] }}</p><br>
-
+                    <p class="text-black-50">Qty :{{ $item['qty'] }}</p>
                     <div class="editDelete d-flex justify-content-evenly">
-                        <a data-bs-toggle="modal" data-bs-target="#edit{{ $item['id'] }}" class="btn w-50 text-white me-1" style="height: 2rem ; background-color: #00DFA2;"><i class="fa-sharp fa-solid fa-cart-shopping fa-fade fa-sm"></i></a>
-                        <a data-bs-toggle="modal" data-bs-target="#detail{{ $item['id'] }}" class="btn text-white w-50" style="height: 2rem; background-color:#57C5B6;">
+                        <a data-bs-toggle="modal" data-bs-target="#detail{{ $item['id'] }}" class="btn text-white w-100" style="height: 2rem; background-color:#57C5B6;">
                             <i class="fa-solid fa-circle-info"></i>
                         </a>
                     </div>

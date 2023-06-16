@@ -11,6 +11,7 @@ use App\Http\Controllers\ContentController;
 use App\Http\Controllers\RegisController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,12 @@ use App\Http\Controllers\TransactionController;
 |
 */
 Route::middleware(['auth'])->group(function () {
-    // Rute-rute yang hanya dapat diakses oleh pengguna yang telah login
+
+
+
+});
+// Transaction
+Route::get('admin/transaksi',[TransaksiController::class,'produk'])->name('produk');
 
 // User
 Route::get('/admin/user',[UserController::class, 'adminuser'])->name('adminuser');
@@ -41,13 +47,10 @@ Route::get('/admin/tambahproduk', [ProdukController::class, 'tambahproduk'])->na
 Route::post('/insertproduk',[ProdukController::class, 'insertproduk'])->name('insertproduk');
 Route::get('/delete/{id}',[ProdukController::class, 'delete'])->name('delete');
 
-// Route::get('/', function (){return view('admin/login');});
 //registrasi
 Route::post('/register', [RegisController::class, 'store'])->name('register');
 // Operator
 Route::get('/operator/home',[ProdukController::class,'operatorhome']);
-
-});
 // login admin
 Route::get('/',function(){return view('admin.login');});
 Route::get('/login',[LoginController::class,'adminlogin'])->name('adminlogin');
@@ -60,5 +63,3 @@ Route::get('/operator/login',[LoginController::class,'operatorlogin'])->name('op
 Route::post('/loginoperator',[LoginController::class,'loginoperator'])->name('loginoperator');
 
 
-// Transaction
-Route::get('/transaction',[TransactionController::class ,'index'])->name('indextransaksi');

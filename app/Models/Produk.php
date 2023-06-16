@@ -1,13 +1,25 @@
 <?php
 
 namespace App\Models;
-
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Transaksi;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Produk extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
+
+    // protected $table = "produks";
+    // protected $fillable = ['id','namabarang','matcode','kategori','gambar','deskripsi','qty','tanggal'];
+    public function transaksi()
+    {
+        return $this->belongsTo(Transaksi::class);
+    }
 }
+
+
+
+
