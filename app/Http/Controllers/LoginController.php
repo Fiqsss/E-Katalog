@@ -21,7 +21,7 @@ class LoginController extends Controller
         return view('admin.login');
     }
 
-    public function login(Request $request)
+    public function loginadmin(Request $request)
     {
         $credentials = $request->validate([
             'name' => 'required',

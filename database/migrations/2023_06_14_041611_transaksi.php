@@ -13,13 +13,14 @@ class Transaksi extends Migration
      */
     public function up()
     {
-        Schema::create('transaksi', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('produk_id')->nullable();
-            $table->string('no_transaksi');
+        Schema::create('transaksis', function (Blueprint $table) {
+            $table->id(); // Tambahkan kolom 'produk_id' sebagai foreign key
+            $table->unsignedBigInteger('produk_id');
             $table->integer('qty_permintaan');
+            $table->string('status')->default('PROCCESS');
             $table->timestamp('tanggal_transaksi')->nullable();
             $table->timestamps();
+
         });
     }
 

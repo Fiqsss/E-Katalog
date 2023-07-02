@@ -56,7 +56,7 @@
                             <p class="card-text fw-bold">Name: <span class="fw-bold" style="color: #FF6969"> {{ $item['name'] }}</span></p>
                             <p class="card-text fw-bold">E-mail: <span class="fw-bold" style="color: #FF6969"> {{ $item['email'] }}</span></p>
                             <p class="card-text fw-bold">Level: <span class="fw-bold" style="color: #FF6969"> {{ $item['level'] }}</span></p>
-                            <a href="#" style="min-width: 10rem;" class="btn btn-warning text-white" data-bs-toggle="modal" data-bs-target="#edit">Edit</a>
+                            <a href="#" style="min-width: 10rem;" class="btn btn-warning text-white" data-bs-toggle="modal" data-bs-target="#edit{{ $item->id }}">Edit</a>
                             <a href="#" style="min-width: 10rem;" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">Delete</a>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
 
 
           <!-- Edit -->
-          <div id="edit" class="modal" tabindex="-1">
+          <div id="edit{{ $item->id }}" class="modal" tabindex="-1">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header bg-warning">
@@ -77,15 +77,21 @@
                   <form action="{{ route('updateuser', $item['id']) }}"  method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    <input class="form-control" type="hidden" value="">
+                    <input class="form-control" name="edtid" type="hidden" value="{{ $item['id'] }}">
                     <label for="user">User</label>
                     <input value="{{ $item['name'] }}" name="edtname" id="user" class="form-control" type="text" value="">
                     <br>
                     <label for="nama">Nama</label>
                     <input value="{{ $item['email'] }}" name="edtemail" id="nama" class="form-control" type="text" value="">
                     <br>
+                    <label for="nama">Level</label>
+                    <select name="edtlevel" class="form-select @error('level') is-invalid @enderror" name="level" id="level" required>
+                        <option value="">Pilih Level</option>
+                        <option value="admin">Admin</option>
+                        <option value="operator">Operator</option>
+                    </select><br>
                     <label for="password">password</label>
-                    <input value="{{ $item['password'] }}" name="edtpass" id="password" class="form-control" type="password">
+                    <input name="edtpass" id="password" class="form-control" type="password">
                     <br>
                     <label for="konpas">Konfirmasi password</label>
                     <input id="konpas" name="konpas" class="form-control" type="text">

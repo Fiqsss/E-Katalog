@@ -9,9 +9,6 @@
         <h6>Produk</h6>
     </div>
     <div class="row rounded pt-3">
-        @php
-            $no = 1;
-        @endphp
         @foreach ($data as $item )
         <div class="col-lg-4 col-md-6 mt-1 col-12">
             <div class="card mb-2 shadow">
@@ -21,11 +18,11 @@
                 </a>
                 <div class="card-body ">
                     <h4 class="card-title text-bold">{{ $item['namabarang'] }}</h4>
-                    <p class="badge bg-warning ">{{ $item['matcode'] }}</p><br>
-                    <p class="text-black-50">Qty :{{ $item['qty'] }}</p>
+                    <p class="badge bg-warning ">{{ $item['kategori'] }}</p><br>
+                    <p class="text-black-50">{{ $item['matcode'] }}</p>
                     <div class="editDelete d-flex justify-content-evenly">
                         <a data-bs-toggle="modal" data-bs-target="#detail{{ $item['id'] }}" class="btn text-white w-100" style="height: 2rem; background-color:#57C5B6;">
-                            <i class="fa-solid fa-circle-info"></i>
+                            <h6>Detail</h6>
                         </a>
                     </div>
 
@@ -44,19 +41,15 @@
                         <div class="modal-body " style="width: 70vh;" >
                             <table class="table table-success shadow" >
                                 <tr class="">
-                                    <th>No</th>
                                     <th>Matcode</th>
                                     <th>Nama Barang</th>
                                     <th>Kategori</th>
-                                    <th>Deskripsi</th>
                                     <th>Tgl Update</th>
                                 </tr>
                                 <tr>
-                                    <td>{{ $no++ }}</td>
                                     <td>{{ $item['matcode'] }}</td>
                                     <td>{{ $item['namabarang'] }}</td>
                                     <td>{{ $item['kategori'] }}</td>
-                                    <td>{{ $item['deskripsi'] }}</td>
                                     <td>{{ $item['tanggal'] }}</td>
                                 </tr>
                             </table>
@@ -111,8 +104,8 @@
                                     <img style="width: 50px; height:50px" src="{{ asset('produk/'.$item['gambar']) }}" alt=""><br>
                                     <input id="edtgambar" type="file" name="gambar" class="form-control"><br>
                                     <label for="edtgambar">Gambar</label><br>
-                                    <label for="edtdeskripsi">Deskripsi</label>
-                                    <input id="edtdeskripsi" type="text" name="edtdeskripsi" class="form-control" value="{{ $item['deskripsi'] }}"><br>
+                                    <label for="edtqty">Qty</label>
+                                    <input id="edtqty" type="text" name="edtqty" class="form-control" value="{{ $item['qty'] }}"><br>
                                     <label for="edttanggal">Tanggal</label>
                                     <input id="edttanggal" type="time" name="edttanggal" class="form-control" value="{{ $item['tanggal'] }}"><br>
                                     <div class="modal-footer">

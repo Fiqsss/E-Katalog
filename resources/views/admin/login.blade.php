@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="container">
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('loginadmin') }}">
             @csrf
             <h3>Log In</h3>
 

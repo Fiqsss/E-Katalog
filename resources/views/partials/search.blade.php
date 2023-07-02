@@ -1,10 +1,11 @@
-<section id="cari" class="shadow " style="padding-top:70px ;">
+<section id="cari" style="padding-top:70px ;">
     <nav
     class="navbar navbar-main navbar-expand-lg mb-0 shadow-none border-radius-xl"
     id="navbarBlur"
     data-scroll="false">
     <div class="container mt-3 mb-0">
-      <form class="w-100" action="" method="post">
+      <form class="w-100" action="{{ route('cari') }}" method="post">
+        @csrf
         <div class="row gx-5 w-100 d-flex justify-content-center">
         <div id="cari" class="col-12 col-lg-12 col-md-12 col-sm-12 ms-5">
             <div class="kom d-flex justify-content-end position-relative">
@@ -14,7 +15,6 @@
                 type="text"
                 class="form-control w-100"
                 placeholder="Tulis Nama"
-                required
                 autofocus
                 autocomplete="off"
             />

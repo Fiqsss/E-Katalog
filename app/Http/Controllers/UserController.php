@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 
 use App\Models\User;
+use App\Models\Produk;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Model;
 use App\Http\Requests\StoreProdukRequest;
 use App\Http\Requests\UpdateProdukRequest;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 
 class UserController extends Controller
 {
@@ -22,7 +24,9 @@ class UserController extends Controller
     public function adminuser()
     {
         $data = User::all();
-        return view('admin.user',['data' => $data, "title" => "User"]);
+        $transaksi = Transaksi::all();
+        $produk = Produk::with('transaksi')->paginate(6);
+        return view('admin.user',['produk' => $produk, 'transaksi'=> $transaksi, 'data' => $data, "title" => "User"]);
     }
 
 
@@ -41,23 +45,22 @@ class UserController extends Controller
 
     public function updateuser(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        $user->user = $request->edtuser;
-        $user->name = $request->edtnama;
-        if ($request->edtpass === $request->konpas) {
-            $request->validate([
-                'edtpass' => 'required|string|min:3|confirmed',
-            ]);
 
-            $user->password = Hash::make($request->edtpass);
+        if ($request->edtpass !== $request->konpas) {
+            return back()->with('password', 'Password Tidak Sesuai')->withInput();
         }else
         {
-            return back()->with('password', 'Password Tidak Sesuai')->withInput();
+            $request->validate([
+                'edtpass' => 'required|string|min:3',
+            ]);
+            $user = User::findOrFail($id);
+            $user->name = $request->edtname;
+            $user->email = $request->edtemail;
+            $user->level = $request->edtlevel;
+            $user->password = Hash::make($request->edtpass);
+            $user->save();
         }
 
-        $user->save();
-        $user->password = $request->edtpass;
-        $user->save();
         return redirect()->back()->with('success', 'Data User berhasil diupdate');
     }
 

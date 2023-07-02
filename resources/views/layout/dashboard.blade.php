@@ -20,50 +20,51 @@
     <div class="head position-absolute w-100" style="background-color: {{ ($title === 'Home') ? '#F21472' : (($title === 'Tambah') ? '#448EF6' : (($title === 'User') ? '#F2A154' : (($title === 'transaksi') ? '#22A699' : ''))) }}; min-height: 300px;"></div>
     <section id="sidebar">
         <div class="container shadow rounded ">
-         <div class="button-close rounded">
-             <a class="tombol ">
-               <i id="cls" class="fa-solid fa-xl " style="margin-top: 25px; color:#1d2b44"></i>
-             </a>
-         </div>
-         <div class="sidebar">
-           <div class="header mb-3">
-             <a id="linklogo" class="navbar-brand" href="#"><img src="{{ ('../img/798px-Smartfren_(2019).svg.png') }}" class="w-100" alt=""></a>
-           </div>
-           <br>
-           <ul class="navbar-nav">
-           <li class="nav-item  d-flex  mb-3">
-             <a class="nav-link  d-flex"  href="/admin/home">
+        <div class="button-close rounded">
+            <a class="tombol ">
+            <i id="cls" class="fa-solid fa-xl " style="margin-top: 25px; color:#1d2b44"></i>
+            </a>
+        </div>
+        <div class="sidebar">
+        <div class="header mb-3">
+            <a id="linklogo" class="navbar-brand" href="#"><img src="{{ ('../img/798px-Smartfren_(2019).svg.png') }}" class="w-100" alt=""></a>
+        </div>
+        <br>
+        <ul class="navbar-nav">
+        <li class="nav-item  d-flex  mb-3">
+            <a class="nav-link  d-flex"  href="/admin/home">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="fa-solid fa-house-chimney fa-xl {{ ($title === "Home") ? 'fa-bounce' : '' }}"  style="color:#213555"></i>
                 </div>
                 <span class="nav-link-text ms-1">Dashboard</span>
-             </a>
-           </li>
-           <li class="nav-item mb-3">
-             <a class="nav-link d-flex" href="/admin/tambahproduk">
-               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fa-solid fa-square-plus fa-xl  {{ ($title === "Tambah") ? 'fa-bounce' : '' }}"" style="color: #213555"></i>
-               </div>
-               <span class="nav-link-text ms-1">Tambah Barang</span>
-             </a>
-           </li>
-           <li class="nav-item mb-3">
-             <a class="nav-link d-flex" href="/admin/user">
-               <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="fa-solid fa-user fa-xl  {{ ($title === "User") ? 'fa-bounce' : '' }}" style="color: #213555"></i>
-               </div>
-               <span class="nav-link-text ms-1">User</span>
-             </a>
-           </li>
-           <li class="nav-item mb-3">
-            <a class="nav-link d-flex" href="/admin/transaksi">
-              <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-               <i class="fa-solid fa-repeat fa-xl {{ ($title === "Transaksi") ? 'fa-bounce' : '' }}" style="color: #213555"></i>
-              </div>
-              <span class="nav-link-text ms-1">Transaksi</span>
             </a>
-          </li>
-           <li class="nav-item mb-3">
+        </li>
+        <li class="nav-item mb-3">
+        <a class="nav-link d-flex" href="/admin/tambahproduk">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="fa-solid fa-square-plus fa-xl  {{ ($title === "Tambah") ? 'fa-bounce' : '' }}"" style="color: #213555"></i>
+            </div>
+            <span class="nav-link-text ms-1">Tambah Barang</span>
+            </a>
+        </li>
+        <li class="nav-item mb-3">
+            <a class="nav-link d-flex" href="/admin/user">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="fa-solid fa-user fa-xl  {{ ($title === "User") ? 'fa-bounce' : '' }}" style="color: #213555"></i>
+            </div>
+            <span class="nav-link-text ms-1">User</span>
+            </a>
+        </li>
+        <li class="nav-item mb-3">
+            <a class="nav-link d-flex" href="/admin/transaksi">
+            <div class="icon icon-shpe icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-repeat fa-xl {{ ($title === "transaksi") ? 'fa-bounce' : '' }}" style="color: #213555"></i>
+            </div>
+            <span class="nav-link-text ms-1">Transaksi </span>
+            @include('partials.pagetransaksi')
+            </a>
+        </li>
+        <li class="nav-item mb-3">
             <a class="nav-link d-flex" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <i class="fa-solid fa-right-from-bracket fa-xl {{ ($title === "Logout") ? 'fa-bounce' : '' }}"></i>
@@ -75,8 +76,8 @@
             </form>
         </li>
 
-         </ul>
-         </div>
+        </ul>
+        </div>
         </div>
     </section>
 
