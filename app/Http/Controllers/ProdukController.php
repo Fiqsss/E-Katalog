@@ -50,6 +50,17 @@ class ProdukController extends Controller
         return view('admin.home',['produk' => $produk,'transaksi'=> $transaksi ,"title" => "Home"]) ;
     }
 
+    public function opratorcari(Request $request)
+    {
+        $transaksi = Transaksi::all();
+        $keyword = $request->input('keyword');
+        $produk = Produk::where('matcode', 'LIKE', "%$keyword%")
+        ->orWhere('namabarang', 'LIKE', "%$keyword%")
+        ->orWhere('kategori', 'LIKE', "%$keyword%")
+        ->paginate(12);
+        return view('operator.home',['produk' => $produk,'transaksi'=> $transaksi ,"title" => "Home"]) ;
+    }
+
     public function search()
     {
         $transaksi = Transaksi::all();
@@ -81,7 +92,7 @@ class ProdukController extends Controller
     public function delete ($id){
         $data = Produk::find($id);
         $data->delete();
-        return redirect()->route('adminhome')->with('success', 'Data Produk berhasil dihapus');
+        return redirect()->back()->with('success', 'Data Produk berhasil dihapus');
     }
 
   // Tambah
@@ -108,9 +119,9 @@ class ProdukController extends Controller
     // Operator
     public function operatorhome()
     {
-        $data = Produk::all();
+        $produk = Produk::all();
         $transaksi = Transaksi::paginate(6);
-        return view('operator.home',['data' => $data, 'transaksi'=>$transaksi, "title" =>"Home","color" => "#F21472"]);
+        return view('operator.home',['produk' => $produk, 'transaksi'=>$transaksi, "title" =>"Home","color" => "#F21472"]);
     }
 
 

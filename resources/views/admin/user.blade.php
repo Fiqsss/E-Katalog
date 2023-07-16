@@ -44,7 +44,6 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
             @foreach ($data as $item)
             <div class="col-md-6 mb-4 ">
@@ -63,8 +62,6 @@
                 </div>
                 </div>
             </div>
-
-
           <!-- Edit -->
           <div id="edit{{ $item->id }}" class="modal" tabindex="-1">
             <div class="modal-dialog">

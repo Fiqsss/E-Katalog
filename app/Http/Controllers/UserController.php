@@ -19,6 +19,10 @@ class UserController extends Controller
 {
 
 
+    public function index()
+    {
+        return view('error.404');
+    }
     // User Admin
 
     public function adminuser()

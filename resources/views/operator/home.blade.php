@@ -1,7 +1,7 @@
 
 @extends('layout.operator')
 @section('container')
-@include('partials.search')
+@include('partials.searchoperator')
 <section id="kategori" style=" position: relative;">
     <div class="container my-3 bg-white rounded shadow">
     <!-- Chard -->
@@ -9,7 +9,7 @@
         <h6>Produk</h6>
     </div>
     <div class="row rounded pt-3">
-        @foreach ($data as $item )
+        @foreach ($produk as $item )
         <div class="col-lg-4 col-md-6 mt-1 col-12">
             <div class="card mb-2 shadow">
             <div class="gambar">
