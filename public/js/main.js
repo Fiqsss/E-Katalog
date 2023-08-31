@@ -3,28 +3,28 @@ var logo = $("#cls");
 var side = $("#sidebar");
 
 $(document).ready(function () {
-  let query = window.matchMedia("(max-width: 1177px)");
-  function toggleSidebar() {
-    if (logo.hasClass("fa-toggle-off")) {
-      logo.toggleClass("fa-toggle-off fa-toggle-on");
-      side.css("margin-left", "0px");
-    } else if (logo.hasClass("fa-toggle-on")) {
-      logo.toggleClass("fa-toggle-on fa-toggle-off");
-      side.css("margin-left", "-240px");
+    let query = window.matchMedia("(max-width: 1177px)");
+    function toggleSidebar() {
+        if (logo.hasClass("fa-toggle-off")) {
+            logo.toggleClass("fa-toggle-off fa-toggle-on");
+            side.css("margin-left", "0px");
+        } else if (logo.hasClass("fa-toggle-on")) {
+            logo.toggleClass("fa-toggle-on fa-toggle-off");
+            side.css("margin-left", "-240px");
+        }
     }
-  }
 
-  if (query.matches) {
-    side.css("margin-left", "-240px");
-    logo.toggleClass("fa-toggle-off");
-    logo.css("transition", "0.3s ease");
-    btn.click(toggleSidebar);
-  } else {
-    logo.toggleClass("fa-toggle-on");
-    side.css("margin-left", "0px");
-    logo.css("transition", "0.3s ease");
-    btn.click(toggleSidebar);
-  }
+    if (query.matches) {
+        side.css("margin-left", "-240px");
+        logo.toggleClass("fa-toggle-off");
+        logo.css("transition", "0.3s ease");
+        btn.click(toggleSidebar);
+    } else {
+        logo.toggleClass("fa-toggle-on");
+        side.css("margin-left", "0px");
+        logo.css("transition", "0.3s ease");
+        btn.click(toggleSidebar);
+    }
 });
 
 // const btn = $(".tombol");

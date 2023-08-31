@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Produk;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreProdukRequest;
-use App\Http\Requests\UpdateProdukRequest;
 
 
 class ProdukController extends Controller
@@ -17,56 +13,44 @@ class ProdukController extends Controller
     // Transaksi Admin
     public function transaksi()
     {
-        $produk = Produk::all();
+        $produk = Produk::get()->all();
         $transaksi = Transaksi::paginate(10);
-        return view('admin.transaksi', ['transaksi' => $transaksi, 'produk'=> $produk, "title" => "transaksi"]);
+        return view('admin.transaksi', ['transaksi' => $transaksi, 'produk' => $produk, "title" => "transaksi"]);
     }
-
-    // Transaksi Oerator
     public function transaksioperator()
     {
-        $produk = Produk::all();
+        $produk = Produk::get()->all();
         $transaksi = Transaksi::paginate(10);
-        return view('operator.transaksi', ['transaksi' => $transaksi, 'produk'=> $produk, "title" => "transaksi"]);
+        return view('operator.transaksi', ['transaksi' => $transaksi, 'produk' => $produk, "title" => "transaksi"]);
     }
 
     // HOME
 
-    public function adminhome()
-    {
-        $produk = Produk::paginate(12);
-        $transaksi = Transaksi::all();
-        return view('admin.home', ['produk' => $produk,'transaksi'=> $transaksi ,"title" => "Home", "color" => "#F21472"]);
-    }
+
     // search
     public function cari(Request $request)
     {
-        $transaksi = Transaksi::all();
+        $transaksi = Transaksi::get()->all();
         $keyword = $request->input('keyword');
         $produk = Produk::where('matcode', 'LIKE', "%$keyword%")
-        ->orWhere('namabarang', 'LIKE', "%$keyword%")
-        ->orWhere('kategori', 'LIKE', "%$keyword%")
-        ->paginate(12);
-        return view('admin.home',['produk' => $produk,'transaksi'=> $transaksi ,"title" => "Home"]) ;
+            ->orWhere('namabarang', 'LIKE', "%$keyword%")
+            ->orWhere('kategori', 'LIKE', "%$keyword%")
+            ->paginate(12);
+        return view('admin.home', ['produk' => $produk, 'transaksi' => $transaksi, "title" => "Home"]);
     }
 
     public function opratorcari(Request $request)
     {
-        $transaksi = Transaksi::all();
+        $transaksi = Transaksi::get()->all();
         $keyword = $request->input('keyword');
         $produk = Produk::where('matcode', 'LIKE', "%$keyword%")
-        ->orWhere('namabarang', 'LIKE', "%$keyword%")
-        ->orWhere('kategori', 'LIKE', "%$keyword%")
-        ->paginate(12);
-        return view('operator.home',['produk' => $produk,'transaksi'=> $transaksi ,"title" => "Home"]) ;
+            ->orWhere('namabarang', 'LIKE', "%$keyword%")
+            ->orWhere('kategori', 'LIKE', "%$keyword%")
+            ->paginate(12);
+        return view('operator.home', ['produk' => $produk, 'transaksi' => $transaksi, "title" => "Home"]);
     }
 
-    public function search()
-    {
-        $transaksi = Transaksi::all();
-        $produk = Produk::paginate(12);
-        return view('admin.home',['transaksi'=> $transaksi ,"title" => "Home"],compact('produk'));
-    }
+
 
 
 
@@ -80,7 +64,7 @@ class ProdukController extends Controller
         $produk->gambar = $request->gambarLama;
         if ($request->hasFile('gambar')) {
             // Upload file gambar baru
-            $request->file('gambar')->move('produk/',$request->file('gambar')->getClientOriginalName());
+            $request->file('gambar')->move('produk/', $request->file('gambar')->getClientOriginalName());
             $produk->gambar = $request->file('gambar')->getClientOriginalName();
         }
         $produk->tanggal = $request->edttanggal;
@@ -89,40 +73,56 @@ class ProdukController extends Controller
     }
 
     // hapus
-    public function delete ($id){
+    public function delete($id)
+    {
         $data = Produk::find($id);
         $data->delete();
         return redirect()->back()->with('success', 'Data Produk berhasil dihapus');
     }
 
-  // Tambah
+    // Tambah
     public function tambahproduk(Request $request)
     {
-        $produk = Produk::all();
-        $transaksi = Transaksi::all();
-        return view('admin.tambahproduk',['transaksi' => $transaksi, 'produk' => $produk ,"title" => "Tambah","color" => "#fff"]);
+        $produk = Produk::get()->all();
+        $transaksi = Transaksi::get()->all();
+        return view('admin.tambahproduk', ['transaksi' => $transaksi, 'produk' => $produk, "title" => "Tambah", "color" => "#fff"]);
     }
 
     public function insertproduk(Request $request)
     {
+        $request->validate([
+            'namabarang' => 'required|max:255',
+            'matcode' => 'required|max:255',
+            'kategori' => 'required|max:255',
+            'tanggal' => 'required|max:255',
+            'gambar' => 'image|mimes:jpeg,jpg|max:2048',
+        ]);
 
+        if (!$request->filled('namabarang') || !$request->filled('matcode') || !$request->filled('kategori') || !$request->filled('tanggal')) {
+            return redirect('/admin/tambahproduk')->withErrors(['error' => 'Lengkapi Data Terlebih Dahulu']);
+        }
         $data = Produk::create($request->all());
-        if($request->hasFile('gambar')){
-            $request->file('gambar')->move('produk/',$request->file('gambar')->getClientOriginalName());
+        if ($request->hasFile('gambar')) {
+            $request->file('gambar')->move('produk/', $request->file('gambar')->getClientOriginalName());
             $data->gambar = $request->file('gambar')->getClientOriginalName();
             $data->save();
         }
-        return redirect()->back()->with('success', 'Data Produk berhasil Ditambahkan');
+        return redirect('/admin/home')->with('success', 'Data Produk berhasil Ditambahkan');
     }
 
 
     // Operator
     public function operatorhome()
     {
-        $produk = Produk::all();
-        $transaksi = Transaksi::paginate(6);
-        return view('operator.home',['produk' => $produk, 'transaksi'=>$transaksi, "title" =>"Home","color" => "#F21472"]);
+        $produk = Produk::paginate(12);
+        $transaksi = Transaksi::get()->all();
+        return view('operator.home', ['produk' => $produk, 'transaksi' => $transaksi, "title" => "Home", "color" => "#F21472"]);
     }
 
-
+    public function adminhome()
+    {
+        $produk = Produk::paginate(12);
+        $transaksi = Transaksi::get()->all();
+        return view('admin.home', ['produk' => $produk, 'transaksi' => $transaksi, "title" => "Home", "color" => "#F21472"]);
+    }
 }

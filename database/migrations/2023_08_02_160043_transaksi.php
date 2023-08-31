@@ -20,6 +20,7 @@ class Transaksi extends Migration
             $table->string('status')->default('PROCCESS');
             $table->timestamp('tanggal_transaksi')->nullable();
             $table->timestamps();
+            $table->foreign('produk_id')->references('id')->on('produks')->onDelete('cascade');
 
         });
     }
@@ -31,6 +32,6 @@ class Transaksi extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaksi');
+        Schema::dropIfExists('transaksis');
     }
 }

@@ -1,8 +1,8 @@
-<section id="cari" style="padding-top:70px ;">
+<section id="cari" style="padding-top:70px ; ">
     <nav
     class="navbar navbar-main navbar-expand-lg mb-0 shadow-none border-radius-xl"
     id="navbarBlur"
-    data-scroll="false">
+    data-scroll="false" style="margin-top:-40px">
     <div class="container mt-3 mb-0">
       <form class="w-100" action="{{ route('cari') }}" method="post">
         @csrf

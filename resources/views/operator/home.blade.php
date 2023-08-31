@@ -8,16 +8,18 @@
     <div class="tabelKategori  mb-2 mt-4 d-flex pt-3 justify-content-center ">
         <h6>Produk</h6>
     </div>
-    <div class="row rounded pt-3">
+    <div class="row rounded pt-3 overflow-auto" style="height: 72vh">
         @foreach ($produk as $item )
         <div class="col-lg-4 col-md-6 mt-1 col-12">
-            <div class="card mb-2 shadow">
+            <div class="card mb-2 shadow" >
             <div class="gambar">
                 <a data-bs-toggle="modal" data-bs-target="#gam{{ $item['id'] }}">
                     <img class="w-100 rounded gam-det" style=" height:15rem; object-fit:cover;" src="{{ asset('produk/'.$item['gambar']) }}">
                 </a>
                 <div class="card-body ">
-                    <h4 class="card-title text-bold">{{ $item['namabarang'] }}</h4>
+                    <div class="nmabrg d-flex align-items-center" style="height: 100px">
+                        <h4 class="card-title text-bold">{{ $item['namabarang'] }}</h4>
+                    </div>
                     <p class="badge bg-warning ">{{ $item['kategori'] }}</p><br>
                     <p class="text-black-50">{{ $item['matcode'] }}</p>
                     <div class="editDelete d-flex justify-content-evenly">
@@ -33,28 +35,30 @@
         {{-- detail --}}
         <div class="modal"  tabindex="-1"  id="detail{{ $item['id'] }}" >
             <div class="modal-dialog d-flex align-items-center justify-content-center" style="width:100%; height:90% !important;" >
-                <div class="modal-content " style="overflow: auto; width: 100vh;">
-                        <div class="modal-header" style="width: 70vh;">
-                            <h5 class="modal-title">Detail Produk</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body " style="width: 70vh;" >
-                            <table class="table table-success shadow" >
-                                <tr class="">
-                                    <th>Matcode</th>
-                                    <th>Nama Barang</th>
-                                    <th>Kategori</th>
-                                    <th>Tgl Update</th>
-                                </tr>
-                                <tr>
-                                    <td>{{ $item['matcode'] }}</td>
-                                    <td>{{ $item['namabarang'] }}</td>
-                                    <td>{{ $item['kategori'] }}</td>
-                                    <td>{{ $item['tanggal'] }}</td>
-                                </tr>
-                            </table>
-                        <hr>
-                        </div>
+                <div class="wrap-full">
+                    <div class="modal-content modal-content-fullscreen" style="overflow: auto; width: 100vh;">
+                            <div class="modal-header" style="width: 75vh;">
+                                <h5 class="modal-title">Detail Produk</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body " style="width: 75vh;" >
+                                <table class="table table-success shadow" >
+                                    <tr class="">
+                                        <th>Matcode</th>
+                                        <th>Nama Barang</th>
+                                        <th>Kategori</th>
+                                        <th>Tgl Update</th>
+                                    </tr>
+                                    <tr>
+                                        <td>{{ $item['matcode'] }}</td>
+                                        <td>{{ $item['namabarang'] }}</td>
+                                        <td>{{ $item['kategori'] }}</td>
+                                        <td>{{ $item['tanggal'] }}</td>
+                                    </tr>
+                                </table>
+                            <hr>
+                            </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -117,6 +121,19 @@
                     </div>
                 </div>
         @endforeach
+        <div class="pagination d-flex justify-content-end align-items-center mt-5">
+            <div class="keterangan me-3">
+                    Menampilkan
+                {{ $produk->firstItem() }}
+                dari
+                {{ $produk->lastItem() }}
+                jumlah data
+                {{ $produk->total() }}
+            </div>
+            <div class="tombol">
+                {{ $produk->links() }}
+            </div>
+        </div>
 </section>
 
 @endsection

@@ -13,8 +13,35 @@
     <link rel="stylesheet" href="{{ ('../fontawesome/css/all.min.css') }}">
     <!-- css botstrap & js -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-
     <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <style>
+        .wrap-full
+        {
+            display: flex;
+            justify-content: center;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            position: relative;
+            min-height: 20vh;
+            min-width:150%;
+            border: 0;
+            border-radius: 0;
+            margin-left: -100px
+        }
+    .modal-content-fullscreen {
+        display: flex;
+        justify-content: center
+
+    }
+
+    .modal-body {
+        overflow-y: auto;
+    }
+
+    </style>
+
 </head>
 <body>
     <div class="head position-absolute w-100" style="background-color: {{ ($title === 'Home') ? '#606C5D' : (($title === 'transaksi') ? '#5A96E3' : (($title === 'User') ? '#F2A154' : '')) }}; min-height: 300px;"></div>

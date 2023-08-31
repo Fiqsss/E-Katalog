@@ -91,7 +91,7 @@
                     <input name="edtpass" id="password" class="form-control" type="password">
                     <br>
                     <label for="konpas">Konfirmasi password</label>
-                    <input id="konpas" name="konpas" class="form-control" type="text">
+                    <input id="konpas" name="konpas" class="form-control" type="password">
 
                     <div class="modal-footer">
                         <button type="submit" name="btnUserEdt" class="btn btn-warning text-white">Simpan</button>
@@ -129,7 +129,5 @@
         </div>
     </div>
 </div>
-
-
 
   @endsection

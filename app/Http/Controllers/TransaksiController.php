@@ -12,6 +12,12 @@ use App\Models\User;
 
 class TransaksiController extends Controller
 {
+    public function index()
+    {
+        $transaksi = Transaksi::all();
+        return view('transaksi.index', compact('transaksi'));
+    }
+
     public function inserttransaksi(Request $request)
     {
         $request->validate([
@@ -44,10 +50,30 @@ class TransaksiController extends Controller
         return redirect()->route('transaksi')->with('success', 'Transaksi Complete');
     }
 
+    public function delete($id)
+    {
+        try {
+            // Temukan data transaksi berdasarkan ID
+            $transaksi = Transaksi::findOrFail($id);
 
-    // Operator
-    // Operator
-    // Operator
-    // Operator
+            // Lakukan penghapusan data
+            $transaksi->delete();
 
+            // Redirect kembali ke halaman sebelumnya dengan pesan sukses
+            return back()->with('success', 'Data Transaksi berhasil dihapus.');
+        } catch (\Exception $e) {
+            // Jika terjadi kesalahan, redirect kembali dengan pesan error
+            return back()->with('error', 'Terjadi kesalahan saat menghapus data Transaksi.');
+        }
+    }
+
+    public function edittransaksi(Request $request, $id)
+    {
+        $transaksi = Transaksi::findOrFail($id);
+        $transaksi->produk_id = $request->prodedt;
+        $transaksi->qty_permintaan = $request->editqty;
+        $transaksi->tanggal_transaksi = $request->edittanggal;
+        $transaksi->save();
+        return redirect()->back()->with('success', 'Data Transaksi berhasil diupdate');
+    }
 }

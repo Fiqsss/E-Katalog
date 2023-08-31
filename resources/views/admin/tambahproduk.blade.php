@@ -1,4 +1,4 @@
-<!-- create.blade.php -->
+ <!-- create.blade.php -->
 @extends('layout.dashboard')
 
 @section('container')
@@ -6,11 +6,13 @@
         <div class="row">
             <div class="col-lg-8 offset-2">
                 <div class="card mb-4 mt-5 shadow">
-                    <h4 class="text-center mt-5">Tambah Barang</h4>
+                    <h4 class="text-center mt-5">Tambah Produk</h4>
                     <form enctype="multipart/form-data" method="post" action="/insertproduk"
                         class="row g-3 needs-validation px-5 mb-4 mx-4 bg-warnings" novalidate>
 
                         @csrf
+
+                        @method('POST')
                         <label for="nama" class="form-label">Nama</label>
                         <input name="namabarang" type="text" class="form-control mt-2" id="nama"
                             autocomplete="off" required>
@@ -28,7 +30,7 @@
                         <label for="tanggal" class="form-label">Tanggal Input</label>
                         <input name="tanggal" type="date" class="form-control mt-2" id="tanggal" >
 
-                        <button type="submit" class="tambah btn bg-primary text-white my-5">Tambah</button>
+                        <button type="submit"  class="tambah btn bg-primary text-white my-5">Tambah</button>
                     </form>
                 </div>
             </div>
