@@ -21,31 +21,29 @@ class RegisController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:3|confirmed',
         ]);
         $existingUser = DB::table('users')
-        ->Where('email', $request->email)
-        ->Where('name', $request->name)
-        ->first();
+            ->Where('name', $request->name)
+            ->first();
 
         if ($request->password !== $request->password_confirmation) {
-                return back()->with('password', 'Password Tidak Sesuai')->withInput();
+            return back()->with('password', 'Password Tidak Sesuai')->withInput();
 
             if ($existingUser) {
                 return back()->withErrors(['error' => 'Password Tidak Sesuai'])->withInput();
             }
 
-            }else{
-                $user = User::create([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'level' => $request->level,
-                    'password' => Hash::make($request->password)
-                ]);
-            }
-
-
-            return redirect()->back()->with('success', 'User Baru berhasil Ditambahkan');
+        } else {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'level' => $request->level,
+                'password' => Hash::make($request->password)
+            ]);
         }
+
+
+        return redirect()->back()->with('success', 'User Baru berhasil Ditambahkan');
     }
+}

@@ -22,9 +22,6 @@
                                 <label for="name">User</label>
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" required autofocus>
                                 <br>
-                                <label for="email">Email</label>
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"  required>
-                                <br>
                                 <label for="level" >level</label>
                                 <select name="level" class="form-select @error('level') is-invalid @enderror" name="level" id="level" required>
                                     <option value="admin">Admin</option>
@@ -53,7 +50,6 @@
                         <div class="card-body ">
                             <h5 class="card-title"></h5>
                             <p class="card-text fw-bold">Name: <span class="fw-bold" style="color: #FF6969"> {{ $item['name'] }}</span></p>
-                            <p class="card-text fw-bold">E-mail: <span class="fw-bold" style="color: #FF6969"> {{ $item['email'] }}</span></p>
                             <p class="card-text fw-bold">Level: <span class="fw-bold" style="color: #FF6969"> {{ $item['level'] }}</span></p>
                             <a href="#" style="min-width: 10rem;" class="btn btn-warning text-white" data-bs-toggle="modal" data-bs-target="#edit{{ $item->id }}">Edit</a>
                             <a href="#" style="min-width: 10rem;" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">Delete</a>
@@ -77,9 +73,6 @@
                     <input class="form-control" name="edtid" type="hidden" value="{{ $item['id'] }}">
                     <label for="user">User</label>
                     <input value="{{ $item['name'] }}" name="edtname" id="user" class="form-control" type="text" value="">
-                    <br>
-                    <label for="nama">Nama</label>
-                    <input value="{{ $item['email'] }}" name="edtemail" id="nama" class="form-control" type="text" value="">
                     <br>
                     <label for="nama">Level</label>
                     <select name="edtlevel" class="form-select @error('level') is-invalid @enderror" name="level" id="level" required>

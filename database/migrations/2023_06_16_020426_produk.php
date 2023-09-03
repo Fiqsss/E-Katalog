@@ -15,11 +15,10 @@ class Produk extends Migration
     {
         Schema::create('produks', function (Blueprint $table) {
             $table->id();
-            $table->string( 'namabarang');
+            $table->string('namabarang');
             $table->string('matcode');
             $table->string('kategori');
             $table->string('gambar')->nullable();
-            $table->integer('qty');
             $table->timestamp('tanggal')->nullable();
             $table->timestamps();
         });
