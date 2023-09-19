@@ -42,5 +42,33 @@ class ProdukSeeder extends Seeder
             'gambar' => 'image4.jpeg',
             'tanggal' => '2023-08-01'
         ]);
+        DB::table('produks')->insert([
+            'namabarang' => 'RF Jumper DM ke DM, 10M',
+            'matcode' => 'WSM-0305242',
+            'kategori' => 'ANTENA',
+            'gambar' => 'image5.jpeg',
+            'tanggal' => '2023-08-05'
+        ]);
+        DB::table('produks')->insert([
+            'namabarang' => 'Antena SXD4H-33-18-iVT-DB8P',
+            'matcode' => 'SXD4H-33-18-IVT-DB',
+            'kategori' => 'ANTENA',
+            'gambar' => 'image6.jpeg',
+            'tanggal' => '2023-08-05'
+        ]);
+        DB::table('produks')->insert([
+            'namabarang' => 'CM-ADWTY5-OD6 Combiner',
+            'matcode' => '56602400109_ST',
+            'kategori' => 'ANTENA',
+            'gambar' => 'image8.jpeg',
+            'tanggal' => '2023-08-05'
+        ]);
+        DB::table('produks')->insert([
+            'namabarang' => '4 port Multibeam Antenna Commscope',
+            'matcode' => '2CPX208R-V4',
+            'kategori' => 'ANTENA',
+            'gambar' => 'image11.jpeg',
+            'tanggal' => '2023-08-05'
+        ]);
     }
 }

@@ -35,10 +35,10 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/insertproduk', [ProdukController::class, 'insertproduk'])->name('insertproduk');
         Route::get('/delete/{id}', [ProdukController::class, 'delete'])->name('delete');
         Route::put('/edittransaksi/{id}', [TransaksiController::class, 'edittransaksi'])->name('edittransaksi');
-
         Route::post('/admin/home', [ProdukController::class, 'cari'])->name('cari');
         Route::get('admin/transaksi', [ProdukController::class, 'transaksi'])->name('transaksi');
         Route::post('/inserttransaksi', [TransaksiController::class, 'inserttransaksi'])->name('inserttransaksi');
+        Route::get('/transaksidelete/{id}', [TransaksiController::class, 'delete'])->name('transaksidelete');
         Route::post('/status', [TransaksiController::class, 'status'])->name('status');
 
         // User
@@ -60,9 +60,13 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     // error
-    Route::get('/404', function () {
-        return view('error.404');
-    })->name('404');
+    Route::get('/admin404', function () {
+        return view('error.admin404');
+    })->name('admin404');
+
+    Route::get('/operator404', function () {
+        return view('error.operator404');
+    })->name('operator404');
 });
 
 

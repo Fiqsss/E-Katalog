@@ -6,7 +6,7 @@
     {{-- Tombol untuk menambah transaksi --}}
     <button class="btn btn-primary shadow mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah Transaksi</button>
 
-    {{-- Modal untuk menambah transaksi --}}
+    {{-- Modal tambah transaksi --}}
     <div class="modal fade" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -17,12 +17,12 @@
                 <div class="modal-body">
                     <form method="POST" action="{{ route('inserttransaksi') }}">
                         @csrf
-                        <select class="form-select" name="prod" id="">
-                            <option>Pilih Produk</option>
+                        <select class="form-select " multiple="multiple" style="width:100%; height:37px;" id="transaksi" name="prod" >
+                            <option style="z-index: 100">Pilih Produk</option>
                             @foreach ($produk as $prod)
                                 <option value="{{ $prod->id }}">{{ $prod->namabarang }} ({{ $prod->matcode }})</option>
                             @endforeach
-                        </select><br>
+                        </select><br><br>
                         <input class="form-control" type="number" name="qty_permintaan" placeholder="Qty Permintaan"><br>
                         <input class="form-control" type="date" name="tanggal_transaksi" placeholder="Tanggal Transaksi"><br>
                         <div class="modal-footer">
@@ -33,7 +33,6 @@
             </div>
         </div>
     </div>
-
     <table style="background-color: #FFFAD7" class="table table-striped rounded shadow">
         <thead>
             <tr class="text-center">
@@ -83,7 +82,6 @@
                             <p> Apakah Anda yakin ingin menghapus data ini <span class="text-danger">{{ $item->produk->namabarang }}</span> </p>
                         </div>
                         <div class="modal-footer">
-                            <form action=""></form>
                             <!-- Tambahkan tombol submit untuk menghapus data -->
                             <a type="button" href="/transaksidelete/{{ $item['id'] }}" class="btn btn-danger" id="hapusDataConfirm">Hapus</a>
                         </div>
@@ -91,18 +89,24 @@
                 </div>
             </div>
             {{-- Modal Edit --}}
-            <div class="modal fade" id="edit{{ $item['id'] }}" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade " id="edit{{ $item['id'] }}" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content" id="mbody">
                         <div class="modal-header bg-warning text-white">
                             <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Transaksi</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body" >
                             <form method="POST" action="{{ route('edittransaksi',$item['id']) }}">
                                 @csrf
                                 @method('PUT')
-                                <input type="text" readonly class="form-control" value="{{ $item->produk->namabarang }}"><br>
+                                {{-- <input type="hidden" name="prodedt" class="form-control" value="{{ $item->produk->id }}"><br> --}}
+                                <select class="form-select"  style="width:100%;" id="transaksiedit" name="prodedt">
+                                        <option value="{{ $prod->id }}" style="z-index: 100">{{ $prod->namabarang }}</option>
+                                    @foreach ($produk as $prod)
+                                        <option value="{{ $prod->id }}">{{ $prod->namabarang }} ({{ $prod->matcode }})</option>
+                                    @endforeach
+                                </select><br><br>
                                 <input class="form-control" type="number" value="{{ $item['qty_permintaan'] }}" name="editqty" placeholder="Qty Permintaan"><br>
                                 <input class="form-control" value="{{ $item->tanggal_transaksi }}" type="date" name="edittanggal" placeholder="Tanggal Transaksi"><br>
                                 <div class="modal-footer">
@@ -115,21 +119,22 @@
             </div>
             @endforeach
         </table>
+        <div class="pagination d-flex justify-content-between">
+            <div class="keterangan">
+                Menampilkan
+                {{ $transaksi->firstItem() }}
+                dari
+                {{ $transaksi->lastItem() }}
+                jumlah data
+                {{ $transaksi->total() }}
+            </div>
+            <div class="tombol">
+                {{ $transaksi->links() }}
+            </div>
+        </div>
     </tbody>
 </div>
 
-    <div class="pagination d-flex justify-content-between">
-        <div class="keterangan">
-            Menampilkan
-            {{ $transaksi->firstItem() }}
-            dari
-            {{ $transaksi->lastItem() }}
-            jumlah data
-            {{ $transaksi->total() }}
-        </div>
-        <div class="tombol">
-            {{ $transaksi->links() }}
-        </div>
-    </div>
+
 </section>
 @endsection

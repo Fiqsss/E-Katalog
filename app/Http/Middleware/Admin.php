@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Providers\RouteServiceProvider;
+
 use Closure;
 use Illuminate\Http\Request;
 
@@ -16,9 +18,9 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!$request->user() || $request->user()->level !== 'admin')
-        {
-            return redirect()->route('404')->with('error','Akses Tidak Diperbolehkan');
+        $user = $request->user();
+        if (!$user || $user->level !== 'admin') {
+            return redirect()->route('admin404')->with('error', 'Akses Tidak Diperbolehkan');
         }
         return $next($request);
     }

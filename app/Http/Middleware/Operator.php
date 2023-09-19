@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Providers\RouteServiceProvider;
 
 class Operator
 {
@@ -16,9 +17,9 @@ class Operator
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!$request->user() || $request->user()->level !== 'operator')
-        {
-            return redirect()->route('404')->with('error','Akses Tidak Diperbolehkan');
+        $user = $request->user();
+        if (!$user || $user->level !== 'operator') {
+            return redirect()->route('operator404')->with('error', 'Akses Tidak Diperbolehkan');
         }
         return $next($request);
     }

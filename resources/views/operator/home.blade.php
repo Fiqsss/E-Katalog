@@ -122,19 +122,19 @@
                 </div>
         @endforeach
         <div class="pagination d-flex justify-content-end align-items-center mt-5">
-            <div class="keterangan me-3">
-                    Menampilkan
-                {{ $produk->firstItem() }}
-                dari
-                {{ $produk->lastItem() }}
-                jumlah data
-                {{ $produk->total() }}
-            </div>
-            <div class="tombol">
-                {{ $produk->links() }}
-            </div>
-        </div>
 </section>
+<div class="keterangan me-3">
+    Menampilkan
+{{ $produk->firstItem() }}
+dari
+{{ $produk->lastItem() }}
+jumlah data
+{{ $produk->total() }}
+</div>
+<div class="tombol">
+{{ $produk->links() }}
+</div>
+</div>
 
 @endsection
 

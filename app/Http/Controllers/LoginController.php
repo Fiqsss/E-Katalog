@@ -4,10 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Auth\Events\Authenticated;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
@@ -32,7 +28,8 @@ class LoginController extends Controller
 
         if ($user && Auth::attempt(['name' => $credentials['name'], 'password' => $credentials['password']])) {
             if ($user->level == 'admin') {
-                return redirect('/admin/home');
+                $request->session()->regenerate();
+                return redirect()->route('adminhome');
             } else {
                 Auth::logout();
                 return redirect('/login')->withErrors(['error' => 'Akun Anda tidak memiliki akses sebagai Admin']);
@@ -64,7 +61,7 @@ class LoginController extends Controller
                 return redirect('/operator/home');
             } else {
                 Auth::logout();
-                return redirect('/operator/login')->withErrors(['error' => 'Akun Anda tidak memiliki akses sebagai Operator']);
+                return redirect('/login')->withErrors(['error' => 'Akun Anda tidak memiliki akses sebagai Operator']);
             }
         } else {
             return back()->withErrors(['error' => 'User / Kata Sandi salah'])->withInput();

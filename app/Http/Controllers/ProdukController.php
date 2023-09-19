@@ -14,13 +14,13 @@ class ProdukController extends Controller
     public function transaksi()
     {
         $produk = Produk::get()->all();
-        $transaksi = Transaksi::paginate(10);
+        $transaksi = Transaksi::latest()->paginate(10);
         return view('admin.transaksi', ['transaksi' => $transaksi, 'produk' => $produk, "title" => "transaksi"]);
     }
     public function transaksioperator()
     {
         $produk = Produk::get()->all();
-        $transaksi = Transaksi::paginate(10);
+        $transaksi = Transaksi::latest()->paginate(10);
         return view('operator.transaksi', ['transaksi' => $transaksi, 'produk' => $produk, "title" => "transaksi"]);
     }
 

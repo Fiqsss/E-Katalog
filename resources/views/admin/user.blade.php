@@ -52,7 +52,7 @@
                             <p class="card-text fw-bold">Name: <span class="fw-bold" style="color: #FF6969"> {{ $item['name'] }}</span></p>
                             <p class="card-text fw-bold">Level: <span class="fw-bold" style="color: #FF6969"> {{ $item['level'] }}</span></p>
                             <a href="#" style="min-width: 10rem;" class="btn btn-warning text-white" data-bs-toggle="modal" data-bs-target="#edit{{ $item->id }}">Edit</a>
-                            <a href="#" style="min-width: 10rem;" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete">Delete</a>
+                            <a href="#" style="min-width: 10rem;" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete{{ $item->id }}">Delete</a>
                         </div>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
 
           <!-- delete -->
 
-          <div id="delete" class="modal" tabindex="-1">
+          <div id="delete{{ $item->id }}" class="modal" tabindex="-1">
 
             <div class="modal-dialog">
               <div class="modal-content">
