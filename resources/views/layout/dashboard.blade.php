@@ -58,7 +58,7 @@
         <br>
         <ul class="navbar-nav">
         <li class="nav-item  d-flex  mb-3">
-            <a class="nav-link  d-flex"  href="/dashboard">
+            <a class="nav-link  d-flex"  href="/admin/home">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                 <i class="fa-solid fa-house-chimney fa-xl {{ ($title === "Home") ? 'fa-bounce' : '' }}"  style="color:#213555"></i>
                 </div>
@@ -101,7 +101,6 @@
                 @csrf
             </form>
         </li>
-
         </ul>
         </div>
         </div>

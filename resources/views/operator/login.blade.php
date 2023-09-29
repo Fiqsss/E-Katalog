@@ -8,6 +8,14 @@
     <title>Login</title>
 
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <style>
+        #lupapassword a{
+           color: white;
+       }
+       #lupapassword:hover a{
+           color: #35A29F;
+       }
+   </style>
 </head>
 <body style="background-color: #D25380">
     <div style="background-color: #537188" class="container">
@@ -36,7 +44,9 @@
                     <div class="error">{{ $message }}</div>
                 @enderror
             </div>
-
+            <div id="lupapassword" style=" margin-bottom:20px;">
+                <a href="{{ route('getlupapassword') }}">Lupa Password? </a>
+            </div>
             <div class="inputBox">
                 <div class="box">
                     <button id="button" class="btn" type="submit">LOGIN</button>
@@ -54,18 +64,5 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-<!-- Tambahkan skrip berikut di bawah form -->
-@if($errors->any())
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: '{{ $errors->first() }}',
-            });
-        </script>
-
-    @endif
 </body>
 </html>

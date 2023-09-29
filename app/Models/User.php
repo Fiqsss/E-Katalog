@@ -2,19 +2,22 @@
 
 namespace App\Models;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
 
-class User extends Model implements AuthenticatableContract
+class User extends Authenticatable implements CanResetPassword
 {
-    use HasFactory, Authenticatable;
+    use HasFactory, Notifiable;
 
     protected $fillable = [
         'name',
+        'email',
         'password',
         'level',
     ];

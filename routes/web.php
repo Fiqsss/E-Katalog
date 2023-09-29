@@ -1,18 +1,13 @@
 <?php
 
-use App\Models\Produk;
-use PhpParser\Node\Stmt\Return_;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProdukController;
-use App\Http\Controllers\ContentController;
-use App\Http\Controllers\RegisController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\RegisController;
+use Illuminate\Auth\Events\PasswordReset;
+use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\TransaksiController;
-use Symfony\Component\HttpKernel\Controller\ErrorController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,10 +30,11 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/insertproduk', [ProdukController::class, 'insertproduk'])->name('insertproduk');
         Route::get('/delete/{id}', [ProdukController::class, 'delete'])->name('delete');
         Route::put('/edittransaksi/{id}', [TransaksiController::class, 'edittransaksi'])->name('edittransaksi');
+
         Route::post('/admin/home', [ProdukController::class, 'cari'])->name('cari');
         Route::get('admin/transaksi', [ProdukController::class, 'transaksi'])->name('transaksi');
-        Route::post('/inserttransaksi', [TransaksiController::class, 'inserttransaksi'])->name('inserttransaksi');
         Route::get('/transaksidelete/{id}', [TransaksiController::class, 'delete'])->name('transaksidelete');
+        Route::post('/inserttransaksi', [TransaksiController::class, 'inserttransaksi'])->name('inserttransaksi');
         Route::post('/status', [TransaksiController::class, 'status'])->name('status');
 
         // User
@@ -80,4 +76,8 @@ Route::middleware(['guest'])->group(function () {
     Route::get('/admin/login', [LoginController::class, 'adminlogin'])->name('adminlogin');
     Route::post('/loginadmin', [LoginController::class, 'loginadmin'])->name('loginadmin');
     Route::get('/login', [LoginController::class, 'adminlogin'])->name('adminlogin');
+    Route::get('/lupapassword', [UserController::class, 'getlupapassword'])->name('getlupapassword');
+    Route::post('/lupapassword', [UserController::class, 'lupapassword'])->name('lupapassword');
+    Route::get('/reset-password/{token}', [UserController::class, 'resetpassword'])->name('password.reset');
+    Route::post('/reset-password', [UserController::class, 'reset'])->name('password.update');
 });
