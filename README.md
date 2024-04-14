@@ -15,14 +15,14 @@
 ## Demo
 
 ## Admin Page
-![Fiqsss POS](public/demo/SC1.png)
-![Fiqsss POS](public/demo/SC2.png)
-![Fiqsss POS](public/demo/SC3.png)
+![Fiqsss ekatalog](public/img/demo/SC1.png)
+![Fiqsss ekatalog](public/img/demo/SC2.png)
+![Fiqsss ekatalog](public/img/demo/SC3.png)
 
 ## Operator Page
-![Fiqsss POS](public/demo/SC4.png)
-![Fiqsss POS](public/demo/SC5.png)
-![Fiqsss POS](public/demo/SC6.png)
+![Fiqsss ekatalog](public/img/demo/SC4.png)
+![Fiqsss ekatalog](public/img/demo/SC5.png)
+![Fiqsss ekatalog](public/img/demo/SC6.png)
 **Live Demo:** will update soon
 
 ## Fiqsss E-katalog Features
