@@ -12,6 +12,9 @@
 - then visit `` http://localhost:8000 or http://127.0.0.1:8000 ``.
 
 
+# Admin Credentials
+> user: admin || Password: 111
+
 ## Demo
 
 ## Admin Page
